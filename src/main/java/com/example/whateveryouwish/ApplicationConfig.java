@@ -32,6 +32,7 @@ public class ApplicationConfig extends WebSecurityConfigurerAdapter {
         ;
     }
 
+    //login
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin().loginPage("/login")
