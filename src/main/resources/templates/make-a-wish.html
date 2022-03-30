@@ -6,23 +6,28 @@
 <header th:include="header :: header"></header>
 <div class="container">
     <main>
+        <form th:action="@{/make-a-wish}" method="post">
         <h4>Velkommen [[${#httpServletRequest.getRemoteUser}]]!</h4>
         <p class="centertext">Her kan du tilf&oslash;je &oslash;nsker til din helt egen personlige &oslash;nskeliste</p>
 
         <section class="content">
-        <div >
-            <input  id="itemName" type="text"  placeholder="Navn p&aring; varen" name="itemName"/>
-        </div>
-        <div>
-            <input id="description" type="text"  placeholder="Beskrivelse af varen" name="description"/>
-        </div>
-        <div>
-            <input id="quantity" type="text"  placeholder="Antal af vare" name="quantity"/>
-        </div>
-        <div>
-            <input id="id" type="text"  placeholder="ID p&aring; varen" name="id"/>
-        </div>
+            <div >
+                <input type="text" id="itemName" placeholder="Navn p&aring; varen" name="itemName"/>
+            </div>
+            <div>
+                <input type="text" id="description" placeholder="Beskrivelse af varen" name="description"/>
+            </div>
+            <div>
+                <input type="number" id="quantity" placeholder="Antal af vare" name="quantity"/>
+            </div>
+            <div>
+                <input type="number" id="id" placeholder="ID p&aring; varen" name="id"/>
+            </div>
+            <div>
+                <input type="submit" value="Tilf&oslash;j"/>
+            </div>
         </section>
+        </form>
 
     </main>
 </div>
