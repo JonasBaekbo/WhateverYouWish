@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class MainController {
     @GetMapping("/")
-    public String index(){
+    public String index(Model m){
+        m.addAttribute("title","Forside");
         return "index";
     }
 
     @GetMapping("/make-a-wish")
-    public String makeawish(){
+    public String makeawish(Model m){
+        m.addAttribute("title","Make a wish!");
         return "make-a-wish";
     }
 
