@@ -35,7 +35,8 @@ public class ApplicationConfig extends WebSecurityConfigurerAdapter {
     //login
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin().loginPage("/login")
+        http.authorizeRequests().antMatchers("/test", "/make-a-wish").hasAnyRole("USER", "ADMIN").and()
+                .formLogin().loginPage("/login")
                 .usernameParameter("username")
                 .passwordParameter("pass")
                 .successForwardUrl("/login_success").successHandler(new AuthenticationSuccessHandler() {
@@ -48,7 +49,8 @@ public class ApplicationConfig extends WebSecurityConfigurerAdapter {
 
                         response.sendRedirect("/test");
                     }
-                });
+                })
+        ;
 
     }
 
