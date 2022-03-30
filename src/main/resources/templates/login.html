@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http:/www.thymeleaf.org">
+<html lang= xmlns:th="http:/www.thymeleaf.org">
 <head th:include="head :: headerfragment"></head>
 <body>
 <link rel="stylesheet" th:href="@{style.css}" href="../static/style.css">
 <header th:include="header :: header"></header>
+<div id="wrap">
 <div class="loginPosition">
-    <main>
+    <main id="main">
         <form th:action="@{/login}" method="post" style="max-width: 400px; margin: 0 auto;">
             <p>For at kunne lave din ønskeliste skal du have et login</p>
             <p>
@@ -25,8 +26,7 @@
         </div>
     </main>
 </div>
-<!--<div class="footerPositionLoginsite">-->
+</div>
 <footer th:include="footer :: footer"></footer>
-<!--</div>-->
 </body>
 </html>

@@ -5,7 +5,8 @@
 <link rel="stylesheet" th:href="@{style.css}" href="../static/style.css">
 <header th:include="header :: header"></header>
 <div class="container">
-    <main>
+    <div id="wrap">
+    <main id="main">
         <div class="centerlogo"> <img th:src="@{images/wishlist.png}"/>
         </div>
         <div class="row">
@@ -24,6 +25,7 @@
             </div>
         </div>
     </main>
+</div>
 </div>
 <footer th:include="footer :: footer"></footer>
 </body>
