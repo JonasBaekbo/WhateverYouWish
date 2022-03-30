@@ -7,8 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+
 @Controller
 public class MainController {
+    Wish w = new Wish(null,null,0,0);
+    ListOfWish l = new ListOfWish();
     @GetMapping("/")
     public String index(Model m){
         m.addAttribute("title","Forside");
@@ -24,7 +28,8 @@ public class MainController {
     @PostMapping("/make-a-wish")
     public String createwish(@RequestParam("itemName") String itemName,@RequestParam("description") String description,
                              @RequestParam("quantity") int quantity,@RequestParam("id") int id){
-
+        l.addwish(itemName,description,quantity,id);
         return "redirect:/make-a-wish";
     }
+
 }
