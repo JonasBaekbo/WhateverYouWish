@@ -47,7 +47,7 @@ public class ApplicationConfig extends WebSecurityConfigurerAdapter {
 
                         System.out.println("Logged user: " + authentication.getName());
 
-                        response.sendRedirect("/test");
+                        response.sendRedirect("/make-a-wish");
                     }
                 })
         ;

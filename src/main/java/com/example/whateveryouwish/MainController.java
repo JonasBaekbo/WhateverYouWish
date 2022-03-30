@@ -12,11 +12,7 @@ public class MainController {
     public String index(){
         return "index";
     }
-    @GetMapping("/test")
-    public String test(Model m){
 
-        return "test";
-    }
     @GetMapping("/make-a-wish")
     public String makeawish(){
         return "make-a-wish";
