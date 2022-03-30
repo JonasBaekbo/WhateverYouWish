@@ -48,6 +48,6 @@ public class Wish {
 
     @Override
     public String toString() {
-        return itemName + " " +description + " " + quantity +" " +id;
+        return itemName + ";" +description + ";" + quantity +";" +id;
     }
 }
