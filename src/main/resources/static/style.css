@@ -120,5 +120,10 @@ p.centertext{
     text-align: center;
     padding-top: 75px;
 }
+.footerPositionLoginsite{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+}
 
 
