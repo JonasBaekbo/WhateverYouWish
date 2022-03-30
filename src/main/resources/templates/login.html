@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http:/www.thymeleaf.org">
+<head th:include="head :: headerfragment"></head>
+<link rel="stylesheet" th:href="@{style.css}" href="../static/style.css">
+<header th:include="header :: header"></header>
 <head>
     <meta charset="ISO-8859-1">
     <title>Login - Company ABC</title>
+
 </head>
 <body>
-<div>
+<div class="loginPosition">
     <form th:action="@{/login}" method="post" style="max-width: 400px; margin: 0 auto;">
         <p>
-            E-mail: <input type="text" name="username" required />
+            <label for="username">Whatever you wish!</label>
+            <input id="username" type="text" placeholder="Brugernavn" name="username" required />
         </p>
         <p>
-            Password: <input type="password" name="pass" required />
+            <input id="password" type="password" placeholder="Password" name="pass" required />
         </p>
         <p>
             <input type="submit" value="Login" />
         </p>
     </form>
 </div>
+<footer th:include="footer :: footer"></footer>
 </body>
 </html>

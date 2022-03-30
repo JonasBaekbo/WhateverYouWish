@@ -106,4 +106,12 @@ p.centertext{
     width: 400px;
     height: auto;
 }
+.loginFont{
+    font-family: "calibri", sans-serif;
+}
+.loginPosition{
+    text-align: center;
+    padding-top: 150px;
+}
+
 
