@@ -1,4 +1,4 @@
-<header th:fragment="header">
+<header th:fragment="header" xmlns:sec="http://www.w3.org/1999/xhtml">
     <ul class="nav nav-pills d-flex justify-content-center">
         <li class="nav-item">
             <a class="nav-link" href="/">Forside</a>
@@ -6,8 +6,13 @@
         <li class="nav-item">
             <a class="nav-link" href="/make-a-wish">Ønskeliste</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" sec:authorize="isAnonymous()">
             <a class="nav-link" href="/createuser">Opret Bruger </a>
+        </li>
+        <li class="nav-item" sec:authorize="isAuthenticated()">
+            <form id ="logout" th:action="@{/logout}" method="post">
+                <input class="nav-link" type="submit" value="Logout"/>
+            </form>
         </li>
     </ul>
 </header>

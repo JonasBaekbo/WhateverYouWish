@@ -7,24 +7,28 @@
     <title>Title</title>
 </head>
 <link rel="stylesheet" th:href="@{style.css}" href="../static/style.css">
-<header th:include="header :: header"></header>
-<div class="loginPosition">
-<main>
-    <form th:action="@{/createuser}" method="POST">
-        <p>
-        <label for="username"></label>
-        <input id="username" type="text" placeholder="Opret brugernavn" name="username" required/>
-        </p>
-        <p>
-            <label for="password"></label>
-            <input id="password" type="password" placeholder="Opret password" name="pass" required/>
-        </p>
-        <p>
-        <button type="submit">Opret bruger</button>
-    </form>
+<div class="container">
+    <header th:include="header :: header"></header>
+        <div class="loginPosition">
+        <div id="wrap">
+            <main id="main">
+                <form th:action="@{/createuser}" method="POST">
+                    <p>
+                        <label for="username"></label>
+                        <input id="username" type="text" placeholder="Opret brugernavn" name="username" required/>
+                    </p>
+                    <p>
+                        <label for="password"></label>
+                        <input id="password" type="password" placeholder="Opret password" name="pass" required/>
+                    </p>
+                    <p>
+                        <button type="submit"> Opret bruger </button>
+                    </p>
+                </form>
 
-
- </main>
+            </main>
+        </div>
+    </div>
 </div>
 <footer th:include="footer :: footer"></footer>
 </body>

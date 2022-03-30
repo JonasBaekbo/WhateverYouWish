@@ -3,8 +3,8 @@
 <head th:include="head :: headerfragment"></head>
 <body>
 <link rel="stylesheet" th:href="@{style.css}" href="../static/style.css">
-<header th:include="header :: header"></header>
 <div class="container">
+    <header th:include="header :: header"></header>
     <div id="wrap">
         <main id="main">
             <form th:action="@{/make-a-wish}" method="post">
@@ -12,21 +12,21 @@
                 <p class="centertext">Her kan du tilf&oslash;je &oslash;nsker til din helt egen personlige &oslash;nskeliste</p>
 
                 <section class="content">
-                    <div>
+                    <p>
                         <input type="text" id="itemName" placeholder="Navn p&aring; varen" name="itemName"/>
-                    </div>
-                    <div>
+                    </p>
+                    <p>
                         <input type="text" id="description" placeholder="Beskrivelse af varen" name="description"/>
-                    </div>
-                    <div>
+                    </p>
+                    <p>
                         <input type="number" id="quantity" placeholder="Antal af vare" name="quantity"/>
-                    </div>
-                    <div>
+                    </p>
+                    <!--<p>
                         <input type="number" id="id" placeholder="ID p&aring; varen" name="id"/>
-                    </div>
-                    <div>
-                        <input type="submit" value="Tilf&oslash;j"/>
-                    </div>
+                    </p>-->
+                    <p>
+                        <input type="submit" value=" Tilf&oslash;j "/>
+                    </p>
                 </section>
             </form>
 
