@@ -105,6 +105,14 @@ p.centertext{
     width: 400px;
     height: auto;
 }
+.loginLogo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    height: auto;
+
+}
 .loginFont{
     font-family: "calibri", sans-serif;
 }
