@@ -17,4 +17,8 @@ public class MainController {
 
         return "test";
     }
+    @GetMapping("/make-a-wish")
+    public String makeawish(){
+        return "make-a-wish";
+    }
 }
