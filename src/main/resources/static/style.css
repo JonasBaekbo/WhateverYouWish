@@ -1,10 +1,24 @@
+body {
+    background-image: linear-gradient(to right bottom, #82eff5, #0de7ff);
+    font-size: 1.5rem;
+   /*height: 100vh;
+    width: 100vw;*/
+    min-width: 100%;
+    min-height:100%;
+    font-family: "calibri", sans-serif;
+
+
+}
+
 .container {
     min-width: 100%;
     padding: 4vw;
+    min-height: 100%;
 }
 
 @media only screen and (min-width: 1500px) and (max-width: 2000px) {
     .container {
+
         padding-right: 10%;
         padding-left: 10%;
     }
@@ -23,9 +37,12 @@ header {
 }
 
 footer {
+   position: relative;
+    background-color: transparent;
     bottom: 0;
     width: 100%;
 }
+
 
 footer a {
     color: #264973;
@@ -84,34 +101,32 @@ img {
     padding-top: 2vw;
 
 }
-body{
-    background-image:linear-gradient(to right bottom,#82eff5,#0de7ff);
-    font-size:1.5rem;
-    height: 100vh;
-    width: 100vw;
-    font-family:"calibri", sans-serif;
 
-}
-a:link{
+a:link {
     color: black;
 }
-a:visited{
+
+a:visited {
     color: black;
 }
-h4{
+
+h4 {
     text-align: center;
 }
-p.centertext{
+
+p.centertext {
     text-align: center;
 }
-.centerlogo{
+
+.centerlogo {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 400px;
     height: auto;
 }
-.loginLogo{
+
+.loginLogo {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -119,17 +134,18 @@ p.centertext{
     height: auto;
 
 }
-.loginFont{
+
+.loginFont {
     font-family: "calibri", sans-serif;
 }
-.loginPosition{
+
+.loginPosition {
     text-align: center;
     padding-top: 75px;
 }
-.footerPositionLoginsite{
+/*.footerPositionLoginsite{
     position: fixed;
     bottom: 0px;
     left: 0px;
-}
-
+}*/
 
