@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http:/www.thymeleaf.org">
 <head th:include="head :: headerfragment"></head>
+<body>
 <link rel="stylesheet" th:href="@{style.css}" href="../static/style.css">
 <header th:include="header :: header"></header>
-<head>
-    <meta charset="ISO-8859-1">
-    <title>Login - Company ABC</title>
-
-</head>
-<body>
 <div class="loginPosition">
-    <form th:action="@{/login}" method="post" style="max-width: 400px; margin: 0 auto;">
-        <p>
-            <label for="username">Whatever you wish!</label>
-            <input id="username" type="text" placeholder="Brugernavn" name="username" required />
-        </p>
-        <p>
-            <input id="password" type="password" placeholder="Password" name="pass" required />
-        </p>
-        <p>
-            <input type="submit" value="Login" />
-        </p>
-    </form>
-    <div class="loginLogo"> <img th:src="@{images/wishlist.png}"/>
+    <main>
+        <form th:action="@{/login}" method="post" style="max-width: 400px; margin: 0 auto;">
+            <p>
+                <label for="username">Whatever you wish!</label>
+                <input id="username" type="text" placeholder="Brugernavn" name="username" required/>
+            </p>
+            <p>
+                <input id="password" type="password" placeholder="Password" name="pass" required/>
+            </p>
+            <p>
+                <input type="submit" value="Login"/>
+            </p>
+        </form>
+        <div class="loginLogo"><img th:src="@{images/wishlist.png}"/>
+
+        </div>
+    </main>
 </div>
+
 <footer th:include="footer :: footer"></footer>
 </body>
 </html>
