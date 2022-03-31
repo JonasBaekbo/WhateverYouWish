@@ -1,5 +1,7 @@
 package com.example.whateveryouwish;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.io.File;
 import java.sql.*;
 import java.util.Scanner;
@@ -20,6 +22,10 @@ public class DB {
             e.printStackTrace();
         }
     }
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    String rawPassword = "Parameter fra HTTP";
+    String encodedPassword = encoder.encode(rawPassword);
+    //til test - sout(EncodedPassword);
 
 
 }
