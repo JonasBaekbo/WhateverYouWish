@@ -18,6 +18,7 @@ public class MainController {
     @GetMapping("/")
     public String index(Model m){
         m.addAttribute("title","Forside");
+        DB.connectDB();
         return "index";
     }
 
