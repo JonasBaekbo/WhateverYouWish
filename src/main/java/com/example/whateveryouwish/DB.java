@@ -22,10 +22,11 @@ public class DB {
             e.printStackTrace();
         }
     }
+
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     String rawPassword = "Parameter fra HTTP";
     String encodedPassword = encoder.encode(rawPassword);
-    //til test - sout(EncodedPassword);
+    //sout(EncodedPassword);
 
 
 }

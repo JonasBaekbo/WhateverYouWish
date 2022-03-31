@@ -1,6 +1,7 @@
 package com.example.whateveryouwish;
 
 import org.apache.catalina.filters.ExpiresFilter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +37,10 @@ public class MainController {
     @PostMapping(value = "/createuser")
     public String createNewUser(@RequestParam("username") String username, @RequestParam("password") String password){
         listOfUser.addUser(username, password);
-        System.out.println(listOfUser.toString());
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String rawPassword = password;
+        String encodedPassword = encoder.encode(rawPassword);
+        System.out.println(encodedPassword);
         return "login";
     }
     @PostMapping("/make-a-wish")
