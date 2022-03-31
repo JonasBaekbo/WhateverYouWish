@@ -21,5 +21,10 @@ public class ListOfUser {
         stringAsArray[3] = String.valueOf(users.get(3));
         return stringAsArray[1];
     }
+
+    @Override
+    public String toString() {
+        return "ListOfUsers: " + users;
+    }
 }
 

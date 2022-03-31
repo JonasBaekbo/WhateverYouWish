@@ -33,10 +33,10 @@ public class MainController {
         return "createuser";
     }
     @PostMapping(value = "/createuser")
-    @ResponseBody
     public String createNewUser(@RequestParam("username") String username, @RequestParam("password") String password){
         listOfUser.addUser(username, password);
-        return "redirect:/make-a-wish";
+        System.out.println(listOfUser.toString());
+        return "make-a-wish";
     }
     @PostMapping("/make-a-wish")
     public String createwish(@RequestParam("itemName") String itemName,@RequestParam("description") String description,
