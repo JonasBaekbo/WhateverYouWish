@@ -15,6 +15,8 @@ import java.util.ArrayList;
 public class MainController {
     Wish w = new Wish(null,null,0,0);
     ListOfWish l = new ListOfWish();
+    User u = new User("", "");
+    ListOfUser listOfUser = new ListOfUser();
     @GetMapping("/")
     public String index(Model m){
         m.addAttribute("title","Forside");
@@ -33,7 +35,8 @@ public class MainController {
     @PostMapping(value = "/createuser")
     @ResponseBody
     public String createNewUser(@RequestParam("username") String username, @RequestParam("password") String password){
-        return "User created with name:" + username + " and password: " + password;
+        listOfUser.addUser(username, password);
+        return "redirect:/make-a-wish";
     }
     @PostMapping("/make-a-wish")
     public String createwish(@RequestParam("itemName") String itemName,@RequestParam("description") String description,
