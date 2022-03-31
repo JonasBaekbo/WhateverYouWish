@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 @Controller
 public class MainController {
-    Wish w = new Wish(null,null,0,0);
     ListOfWish l = new ListOfWish();
     User u = new User("", "");
     ListOfUser listOfUser = new ListOfUser();
@@ -41,8 +40,9 @@ public class MainController {
     }
     @PostMapping("/make-a-wish")
     public String createwish(@RequestParam("itemName") String itemName,@RequestParam("description") String description,
-                             @RequestParam("quantity") int quantity,@RequestParam("id") int id){
-        l.addwish(itemName,description,quantity,id);
+                             @RequestParam("quantity") int quantity){
+        l.addwish(itemName,description,quantity);
+        System.out.println(l.toString());
         return "redirect:/make-a-wish";
     }
 
