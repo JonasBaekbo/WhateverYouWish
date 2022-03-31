@@ -9,14 +9,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 
 @Controller
 public class MainController {
+    static Statement stmt;
+
+    static ResultSet rs;
+
+    static String sqlString;
+
+    static Connection con;
+
     ListOfWish l = new ListOfWish();
+
     User u = new User("", "");
+
     ListOfUser listOfUser = new ListOfUser();
+
     @GetMapping("/")
     public String index(Model m){
         m.addAttribute("title","Forside");
@@ -35,20 +51,43 @@ public class MainController {
     }
     @PostMapping(value = "/createuser")
     public String createNewUser(@RequestParam("username") String username, @RequestParam("password") String password){
+        connectDB();
         listOfUser.addUser(username, password);
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String rawPassword = password;
         String encodedPassword = encoder.encode(rawPassword);
-        System.out.println(encodedPassword);
+        insertUser(username, encodedPassword);
         return "login";
     }
     @PostMapping("/make-a-wish")
     public String createwish(@RequestParam("itemName") String itemName,@RequestParam("description") String description,
                              @RequestParam("quantity") int quantity){
         l.addwish(itemName,description,quantity);
-        System.out.println(l.toString());
         return "redirect:/make-a-wish";
     }
 
+    public static void connectDB() {
+        try {
+            String url = "jdbc:mysql://whateveryouwishdb.mysql.database.azure.com/whateveryouwishdb";
+            con = DriverManager.getConnection(url, "Themasterofall@whateveryouwishdb", "77tgbv77.");
+            System.out.println("Ok, we have a connection.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void insertUser(String username, String password) {
+
+
+        try {
+            stmt = con.createStatement();
+
+            sqlString = "Insert INTO users" +
+                    "(username, password, role, enabled) " + "VALUES ('" + username + "','" + password + "','" + "ROLE_USER','1')";
+            stmt.executeUpdate(sqlString);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
 
