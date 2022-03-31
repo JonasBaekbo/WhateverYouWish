@@ -22,13 +22,24 @@ public class DB {
             e.printStackTrace();
         }
     }
+    public static void addUserToDB(String username, String password){
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String rawPassword = password;
+        String encodedPassword = encoder.encode(rawPassword);
+        connectDB();
+        try {
+            stmt = con.createStatement();
+
+            sqlString = "Insert INTO users" +
+                    "(username, password, role, enabled) " + "VALUES ('" + username + "','" + encodedPassword + "','" + "ROLE_USER','1')";
+            stmt.executeUpdate(sqlString);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
-
-    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-    String rawPassword = "Parameter fra HTTP";
-    String encodedPassword = encoder.encode(rawPassword);
-    //sout(EncodedPassword);
     public void addWishToDB(Wish wish) {
         try {
             stmt = con.createStatement();

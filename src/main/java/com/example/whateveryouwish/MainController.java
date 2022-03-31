@@ -31,38 +31,35 @@ public class MainController {
 
     User u = new User("", "");
 
-    ListOfUser listOfUser = new ListOfUser();
 
     @GetMapping("/")
-    public String index(Model m){
-        m.addAttribute("title","Forside");
+    public String index(Model m) {
+        m.addAttribute("title", "Forside");
         DB.connectDB();
         return "index";
     }
 
     @GetMapping("/make-a-wish")
-    public String makeawish(Model m){
-        m.addAttribute("title","Make a wish!");
+    public String makeawish(Model m) {
+        m.addAttribute("title", "Make a wish!");
         return "make-a-wish";
     }
+
     @GetMapping("/createuser")
-    public String createuser(){
+    public String createuser() {
         return "createuser";
     }
+
     @PostMapping(value = "/createuser")
-    public String createNewUser(@RequestParam("username") String username, @RequestParam("password") String password){
-        connectDB();
-        listOfUser.addUser(username, password);
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String rawPassword = password;
-        String encodedPassword = encoder.encode(rawPassword);
-        insertUser(username, encodedPassword);
+    public String createNewUser(@RequestParam("username") String username, @RequestParam("password") String password) {
+        DB.addUserToDB(username, password);
         return "login";
     }
+
     @PostMapping("/make-a-wish")
-    public String createwish(@RequestParam("itemName") String itemName,@RequestParam("description") String description,
-                             @RequestParam("quantity") int quantity){
-        l.addwish(itemName,description,quantity);
+    public String createwish(@RequestParam("itemName") String itemName, @RequestParam("description") String description,
+                             @RequestParam("quantity") int quantity) {
+        l.addwish(itemName, description, quantity);
         return "redirect:/make-a-wish";
     }
 
@@ -71,20 +68,6 @@ public class MainController {
             String url = "jdbc:mysql://whateveryouwishdb.mysql.database.azure.com/whateveryouwishdb";
             con = DriverManager.getConnection(url, "Themasterofall@whateveryouwishdb", "77tgbv77.");
             System.out.println("Ok, we have a connection.");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    public static void insertUser(String username, String password) {
-
-
-        try {
-            stmt = con.createStatement();
-
-            sqlString = "Insert INTO users" +
-                    "(username, password, role, enabled) " + "VALUES ('" + username + "','" + password + "','" + "ROLE_USER','1')";
-            stmt.executeUpdate(sqlString);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
