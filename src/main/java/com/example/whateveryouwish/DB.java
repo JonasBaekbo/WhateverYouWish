@@ -23,10 +23,23 @@ public class DB {
         }
     }
 
+
+
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     String rawPassword = "Parameter fra HTTP";
     String encodedPassword = encoder.encode(rawPassword);
     //sout(EncodedPassword);
+    public void addWishToDB(Wish wish) {
+        try {
+            stmt = con.createStatement();
+            sqlString = "Insert INTO wish" +
+                "(id_list, name, description, quantity) VALUES ('" + 1 + "','" + wish.getItemName() + "','"
+                + wish.getDescription()+"','" + wish.getQuantity()+"')";
+            stmt.executeUpdate(sqlString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+    }
 
 }
