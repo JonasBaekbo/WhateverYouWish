@@ -7,10 +7,10 @@
     <header th:include="header :: header"></header>
     <div id="wrap">
         <main id="main">
-            <form th:action="@{/make-a-wish}" method="post">
-                <h4>Velkommen [[${#httpServletRequest.getRemoteUser}]]!</h4>
-                <p class="centertext">Her kan du tilf&oslash;je &oslash;nsker til din helt egen personlige &oslash;nskeliste</p>
 
+            <h4 style="padding: 2%">Velkommen [[${#httpServletRequest.getRemoteUser}]]!</h4>
+            <p class="centertext">Her kan du tilf&oslash;je &oslash;nsker til din helt egen personlige &oslash;nskeliste</p>
+            <form th:action="@{/make-a-wish}" method="post">
                 <section class="content">
                     <p>
                         <input type="text" id="itemName" placeholder="Navn p&aring; varen" name="itemName"/>
@@ -21,15 +21,19 @@
                     <p>
                         <input type="number" id="quantity" placeholder="Antal af vare" name="quantity"/>
                     </p>
-                    <!--<p>
-                        <input type="number" id="id" placeholder="ID p&aring; varen" name="id"/>
-                    </p>-->
                     <p>
                         <input type="submit" value=" Tilf&oslash;j "/>
                     </p>
                 </section>
             </form>
-
+            <section>
+                <p style="text-align: center; text-decoration-line: underline">All registered e-mails:</p>
+                <table>
+                    <tr th:each="wish: ${wishes}">
+                        <td th:text="${wish}">name</td>
+                    </tr>
+                </table>
+                </section>
         </main>
     </div>
 </div>

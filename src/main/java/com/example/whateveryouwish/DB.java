@@ -2,18 +2,19 @@ package com.example.whateveryouwish;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.io.File;
 import java.sql.*;
-import java.util.Scanner;
 
 public class DB {
-    static Statement stmt;
-    static ResultSet rs;
-    static String sqlString;
-    static Connection con;
+    private Statement stmt;
+    private String sqlString;
+    private static Connection con;
+
+    public DB() {
+       connectDB();
+    }
 
 
-    public static void connectDB() {
+   public static void connectDB() {
         try {
             String url = "jdbc:mysql://whateveryouwishdb.mysql.database.azure.com/whateveryouwishdb";
             con = DriverManager.getConnection(url, "Themasterofall@whateveryouwishdb", "77tgbv77.");
@@ -22,15 +23,15 @@ public class DB {
             e.printStackTrace();
         }
     }
-    public static void addUserToDB(String username, String password){
+
+    public void addUserToDB(String username, String password) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String rawPassword = password;
         String encodedPassword = encoder.encode(rawPassword);
-        connectDB();
         try {
             stmt = con.createStatement();
 
-            sqlString = "Insert INTO users" +
+            sqlString = "Insert INTO whateveryouwishdb.users" +
                     "(username, password, role, enabled) " + "VALUES ('" + username + "','" + encodedPassword + "','" + "ROLE_USER','1')";
             stmt.executeUpdate(sqlString);
 
@@ -43,9 +44,9 @@ public class DB {
     public void addWishToDB(Wish wish) {
         try {
             stmt = con.createStatement();
-            sqlString = "Insert INTO wish" +
-                "(id_list, name, description, quantity) VALUES ('" + 1 + "','" + wish.getItemName() + "','"
-                + wish.getDescription()+"','" + wish.getQuantity()+"')";
+            sqlString = "Insert INTO whateveryouwishdb.wish" +
+                    "(id_list, name, description, quantity) VALUES ('" + 1 + "','" + wish.getItemName() + "','"
+                    + wish.getDescription() + "','" + wish.getQuantity() + "')";
             stmt.executeUpdate(sqlString);
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,4 +54,25 @@ public class DB {
 
     }
 
+    public boolean hasUserNameAllReady(String user) {
+        try {
+            String searchForUser = "SELECT COUNT(*) FROM whateveryouwishdb.users WHERE `username` = ?";
+            PreparedStatement stmt = con.prepareStatement(searchForUser);
+            stmt.setString(1, user);
+            stmt.execute();
+
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            int numEmail = rs.getInt(1);
+
+            return numEmail != 0;
+        } catch (SQLException e) {
+            System.out.println("error in hasEmail-method");
+            return false;
+        }
+    }
+
+    public Connection getCon() {
+        return con;
+    }
 }

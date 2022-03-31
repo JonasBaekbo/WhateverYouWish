@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head th:include="head :: headerfragment"></head>
+<body>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" th:href="@{style.css}" href="../static/style.css">
+<div class="container">
+    <header th:include="header :: header"></header>
+    <div class="loginPosition">
+        <div id="wrap">
+            <main id="main">
+                <body>
+                <section class="content">
+                    <p> Brugernavnet findes allerede, vælg et andet bruger navn</p>
+                    <form method="GET" action="/createuser">
+                        <input type="submit" value="prøv igen">
+                    </form>
+                </section>
+                </body>
+            </main>
+        </div>
+    </div>
+</div>
+<footer th:include="footer :: footer"></footer>
+</body>
+</html>
