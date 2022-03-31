@@ -36,7 +36,7 @@ public class MainController {
     public String createNewUser(@RequestParam("username") String username, @RequestParam("password") String password){
         listOfUser.addUser(username, password);
         System.out.println(listOfUser.toString());
-        return "make-a-wish";
+        return "login";
     }
     @PostMapping("/make-a-wish")
     public String createwish(@RequestParam("itemName") String itemName,@RequestParam("description") String description,
