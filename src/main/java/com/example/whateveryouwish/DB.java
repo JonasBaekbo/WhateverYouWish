@@ -68,7 +68,6 @@ public class DB {
         }
     }
 
-
     public void addWishToDB(Wish wish) {
         try {
             String insert = "INSERT INTO whateveryouwishdb.wish (user_id, name, description, quantity) VALUES (?, ?, ?, ?)";
@@ -81,7 +80,6 @@ public class DB {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public boolean hasUserNameAllReady(String user) {
