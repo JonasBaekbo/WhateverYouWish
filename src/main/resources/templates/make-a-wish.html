@@ -7,18 +7,33 @@
     <header th:include="header :: header"></header>
     <div id="wrap">
         <main id="main">
+            <h4 style="padding: 2%">Velkommen [[${#httpServletRequest.getRemoteUser}]]!</h4>
             <div class="row">
                 <div class="col-md-6">
-                    <p style="text-align: center; text-decoration-line: underline">Ønsker på din Ønskeliste:</p>
-                    <table>
-                        <tr th:each="wish: ${wishList}">
-                            <td th:text="${wish}">name</td>
+                    <p>Ønsker på din &oslash;nskeliste:</p>
+                    <table style ="width: 80%">
+                        <thead>
+                        <tr>
+                            <th style="width: 45%"> Ønske </th>
+                            <th style="width: 45%"> Beskrivelse </th>
+                            <th> Antal </th>
                         </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:if="${wishList.empty}">
+                            <td colspan="2"> Der er ikke registeret nogle ønsker </td>
+                        </tr>
+                        <tr th:each="wish: ${wishList}">
+                            <td><span th:text="${wish.itemName}"> Ønske </span></td>
+                            <td><span th:text="${wish.description}"> Beskrivelse </span></td>
+                            <td><span th:text="${wish.quantity}"> Antal </span></td>
+
+                        </tr>
+                        </tbody>
                     </table>
                 </div>
-                <div class="col-md-6">
-                    <h4 style="padding: 2%">Velkommen [[${#httpServletRequest.getRemoteUser}]]!</h4>
-                    <p class="centertext">Her kan du tilf&oslash;je &oslash;nsker til din helt egen personlige &oslash;nskeliste</p>
+                <div class="col-md-6" style="justify-content: left">
+                    <p class="centertext">Tilf&oslash;j et &oslash;nske til din &oslash;nskeliste</p>
                     <form th:action="@{/make-a-wish}" method="post">
                         <section class="content">
                             <p>

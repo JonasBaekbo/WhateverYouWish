@@ -158,5 +158,10 @@ p.centertext {
     text-align: center;
     padding-top: 75px;
 }
+table, th, td {
+    border-bottom: 1px solid white;
+    border-collapse: collapse;
+}
+
 
 

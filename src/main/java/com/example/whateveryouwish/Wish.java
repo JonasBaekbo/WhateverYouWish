@@ -7,11 +7,11 @@ public class Wish {
     private int quantity;
     private int userID;
 
-    public Wish(String itemName, String description, int quantity, int userID){
+    public Wish(String itemName, String description, int quantity, int userID) {
         this.itemName = itemName;
         this.description = description;
         this.quantity = quantity;
-        this.userID=userID;
+        this.userID = userID;
     }
 
     public String getItemName() {
@@ -48,6 +48,7 @@ public class Wish {
 
     @Override
     public String toString() {
-        return itemName + ";" +description + ";" + quantity;
+        return itemName + ";" + description + ";" + quantity;
     }
+
 }
