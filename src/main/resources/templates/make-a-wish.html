@@ -11,12 +11,13 @@
             <div class="row">
                 <div class="col-md-6">
                     <p>Ønsker på din &oslash;nskeliste:</p>
-                    <table style ="width: 80%">
+                    <table style ="width: 90%">
                         <thead>
                         <tr>
-                            <th style="width: 45%"> Ønske </th>
-                            <th style="width: 45%"> Beskrivelse </th>
-                            <th style="text-align:right"> Antal </th>
+                            <th style="width: 42%"> Ønske </th>
+                            <th style="width: 42%"> Beskrivelse </th>
+                            <th > Antal </th>
+                            <th style="width: 15% ;text-align:right">slet</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -27,8 +28,7 @@
                             <td><span th:text="${wish.itemName}"> Ønske </span></td>
                             <td><span th:text="${wish.description}"> Beskrivelse </span></td>
                             <td style="text-align:right"><span th:text="${wish.quantity}"> Antal </span></td>
-                            <td><button type="button" class="btn btn-primary"  th:attr="onclick=|remove('${wish.wishID}')|"><i class="fa-solid fa-square-xmark"></i></button></td>
-
+                            <td style="text-align:right"><button type="button" class="btn btn-primary"  th:attr="onclick=|remove('${wish.wishID}')|"><i class="fa-solid fa-square-xmark"></i></button></td>
                         </tr>
                         </tbody>
                     </table>
