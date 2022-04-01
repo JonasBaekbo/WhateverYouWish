@@ -163,6 +163,11 @@ table, th, td {
     border-collapse: collapse;
     word-wrap: break-word;
 }
+.btn-primary {
+    color: #264973;
+    background-color: transparent;
+    border-color: transparent;
+}
 
 
 
