@@ -17,7 +17,7 @@ public class DB {
     //https://www.geeksforgeeks.org/singleton-class-java/
     public static Connection connectDB() {
         if (con != null) {
-            System.out.println("vi genbruger den forbindelse vi allerede har lavet");
+            System.out.println("We reuse our connection");
             return con;
         }
 
@@ -97,7 +97,7 @@ public class DB {
 
             return numUsers != 0;
         } catch (SQLException e) {
-            System.out.println("error in hasEmail-method");
+            System.out.println("error in hasUser-method");
             return false;
         }
     }
@@ -126,9 +126,6 @@ public class DB {
             System.out.println("something wen't wrong in selectData");
 
         }
-
-        System.out.println(wishList);
-
         return wishList;
     }
 

@@ -45,7 +45,7 @@ public class ApplicationConfig extends WebSecurityConfigurerAdapter {
                     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                                         Authentication authentication) throws IOException, ServletException {
 
-                        System.out.println("Logged user: " + authentication.getName());
+                        /*System.out.println("Logged user: " + authentication.getName());*/
 
                         response.sendRedirect("/make-a-wish");
                     }

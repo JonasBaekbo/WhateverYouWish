@@ -20,16 +20,8 @@ public class MainController {
     @GetMapping("/")
     public String index(Model m) {
         m.addAttribute("title", "Forside");
-        /*DB.connectDB();*/
         return "index";
     }
-
-    /*@GetMapping("/make-a-wish")
-    public String makeAWish(Model m) {
-        m.addAttribute("title", "Make a wish!");
-        db.selectData();
-        return "make-a-wish";
-    }*/
 
     @GetMapping("/make-a-wish")
     public String makeAWish(HttpServletRequest request, Model model) {
