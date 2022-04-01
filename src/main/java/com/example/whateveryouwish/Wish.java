@@ -5,12 +5,13 @@ public class Wish {
     private String itemName;
     private String description;
     private int quantity;
-    private int id;
+    private int userID;
 
-    public Wish(String itemName, String description, int quantity){
+    public Wish(String itemName, String description, int quantity, int userID){
         this.itemName = itemName;
         this.description = description;
         this.quantity = quantity;
+        this.userID=userID;
     }
 
     public String getItemName() {
@@ -37,12 +38,12 @@ public class Wish {
         this.quantity = quantity;
     }
 
-    public int getId() {
-        return id;
+    public int getUserId() {
+        return userID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserID(int id) {
+        this.userID = userID;
     }
 
     @Override

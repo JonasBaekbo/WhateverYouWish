@@ -8,8 +8,8 @@ public class ListOfWish {
 
     private static ArrayList<Wish> wishes = new ArrayList<>();
 
-    public void addwish(String itemName, String description, int quantity){
-        Wish wish = new Wish(itemName,description,quantity);
+    public void addwish(String itemName, String description, int quantity, int userID){
+        Wish wish = new Wish(itemName,description,quantity,userID);
         wishes.add(wish);
         db.addWishToDB(wish);
     }

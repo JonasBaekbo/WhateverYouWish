@@ -7,33 +7,36 @@
     <header th:include="header :: header"></header>
     <div id="wrap">
         <main id="main">
-
-            <h4 style="padding: 2%">Velkommen [[${#httpServletRequest.getRemoteUser}]]!</h4>
-            <p class="centertext">Her kan du tilf&oslash;je &oslash;nsker til din helt egen personlige &oslash;nskeliste</p>
-            <form th:action="@{/make-a-wish}" method="post">
-                <section class="content">
-                    <p>
-                        <input type="text" id="itemName" placeholder="Navn p&aring; varen" name="itemName"/>
-                    </p>
-                    <p>
-                        <input type="text" id="description" placeholder="Beskrivelse af varen" name="description"/>
-                    </p>
-                    <p>
-                        <input type="number" id="quantity" placeholder="Antal af vare" name="quantity"/>
-                    </p>
-                    <p>
-                        <input type="submit" value=" Tilf&oslash;j "/>
-                    </p>
-                </section>
-            </form>
-            <section>
-                <p style="text-align: center; text-decoration-line: underline">All registered e-mails:</p>
-                <table>
-                    <tr th:each="wish: ${wishes}">
-                        <td th:text="${wish}">name</td>
-                    </tr>
-                </table>
-                </section>
+            <div class="row">
+                <div class="col-md-6">
+                    <p style="text-align: center; text-decoration-line: underline">Ønsker på din Ønskeliste:</p>
+                    <table>
+                        <tr th:each="wish: ${wishList}">
+                            <td th:text="${wish}">name</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <h4 style="padding: 2%">Velkommen [[${#httpServletRequest.getRemoteUser}]]!</h4>
+                    <p class="centertext">Her kan du tilf&oslash;je &oslash;nsker til din helt egen personlige &oslash;nskeliste</p>
+                    <form th:action="@{/make-a-wish}" method="post">
+                        <section class="content">
+                            <p>
+                                <input type="text" id="itemName" placeholder="Navn p&aring; &oslash;nske" name="itemName"/>
+                            </p>
+                            <p>
+                                <input type="text" id="description" placeholder="Beskrivelse af &oslash;nske" name="description"/>
+                            </p>
+                            <p>
+                                <input type="number" id="quantity" placeholder="Antal" name="quantity"/>
+                            </p>
+                            <p>
+                                <input type="submit" value=" Tilf&oslash;j "/>
+                            </p>
+                        </section>
+                    </form>
+                </div>
+            </div>
         </main>
     </div>
 </div>

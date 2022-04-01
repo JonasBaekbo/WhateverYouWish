@@ -2,25 +2,52 @@ package com.example.whateveryouwish;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DB {
-    private Statement stmt;
-    private String sqlString;
     private static Connection con;
 
     public DB() {
-       connectDB();
+        connectDB();
     }
 
+    //https://www.geeksforgeeks.org/singleton-class-java/
+    public static Connection connectDB() {
+        if (con != null) {
+            System.out.println("vi genbruger den forbindelse vi allerede har lavet");
+            return con;
+        }
 
-   public static void connectDB() {
         try {
             String url = "jdbc:mysql://whateveryouwishdb.mysql.database.azure.com/whateveryouwishdb";
             con = DriverManager.getConnection(url, "Themasterofall@whateveryouwishdb", "77tgbv77.");
             System.out.println("Ok, we have a connection.");
+            return con;
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        return con;
+    }
+
+    public int getUserIdForName(String userName) {
+        try {
+            String searchForUser = "SELECT user_id FROM whateveryouwishdb.users WHERE `username` = ?";
+            PreparedStatement stmt = con.prepareStatement(searchForUser);
+            stmt.setString(1, userName);
+            stmt.execute();
+
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            int userID = rs.getInt(1);
+
+            return userID;
+        } catch (SQLException e) {
+            System.out.println("error in getUserIdForName-method");
+            return 0;
         }
     }
 
@@ -29,12 +56,13 @@ public class DB {
         String rawPassword = password;
         String encodedPassword = encoder.encode(rawPassword);
         try {
-            stmt = con.createStatement();
-
-            sqlString = "Insert INTO whateveryouwishdb.users" +
-                    "(username, password, role, enabled) " + "VALUES ('" + username + "','" + encodedPassword + "','" + "ROLE_USER','1')";
-            stmt.executeUpdate(sqlString);
-
+            String insert = "INSERT INTO whateveryouwishdb.users (username, password, role, enabled) VALUES (?, ?, ?, ?)";
+            PreparedStatement stmt = con.prepareStatement(insert);
+            stmt.setString(1, username);
+            stmt.setString(2, encodedPassword);
+            stmt.setString(3, "ROLE_USER");
+            stmt.setInt(4, 1);
+            stmt.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -43,11 +71,13 @@ public class DB {
 
     public void addWishToDB(Wish wish) {
         try {
-            stmt = con.createStatement();
-            sqlString = "Insert INTO whateveryouwishdb.wish" +
-                    "(id_list, name, description, quantity) VALUES ('" + 1 + "','" + wish.getItemName() + "','"
-                    + wish.getDescription() + "','" + wish.getQuantity() + "')";
-            stmt.executeUpdate(sqlString);
+            String insert = "INSERT INTO whateveryouwishdb.wish (user_id, name, description, quantity) VALUES (?, ?, ?, ?)";
+            PreparedStatement stmt = con.prepareStatement(insert);
+            stmt.setInt(1, wish.getUserId());
+            stmt.setString(2, wish.getItemName());
+            stmt.setString(3, wish.getDescription());
+            stmt.setInt(4, wish.getQuantity());
+            stmt.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,16 +93,49 @@ public class DB {
 
             ResultSet rs = stmt.getResultSet();
             rs.next();
-            int numEmail = rs.getInt(1);
+            int numUsers = rs.getInt(1);
 
-            return numEmail != 0;
+            return numUsers != 0;
         } catch (SQLException e) {
             System.out.println("error in hasEmail-method");
             return false;
         }
     }
 
-    public Connection getCon() {
-        return con;
+    public ArrayList<Wish> getWishListForUser(int currentUserID) {
+       
+        ArrayList<Wish> wishList = new ArrayList<>();
+        try {
+            String select = "select * from whateveryouwishdb.wish, whateveryouwishdb.users where whateveryouwishdb.wish.user_id = whateveryouwishdb.users.user_id and whateveryouwishdb.wish.user_id = ?";
+            PreparedStatement stmt = con.prepareStatement(select);
+            stmt.setInt(1, currentUserID);
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+
+            while (rs.next()) {
+                String itemName = rs.getString("name");
+                String description = rs.getString("description");
+                int quantity = rs.getInt("quantity");
+                int userID = rs.getInt("user_id");
+
+                Wish wish = new Wish(itemName, description, quantity, userID);
+                wishList.add(wish);
+
+            }
+        } catch (Exception e) {
+            System.out.println("something wen't wrong in selectData");
+
+        }
+
+        System.out.println(wishList);
+
+        return wishList;
+    }
+
+    public int getUserIdForRequest(HttpServletRequest request) {
+        Principal principal = request.getUserPrincipal();
+        String userName = principal.getName();
+        int userID = getUserIdForName(userName);
+        return userID;
     }
 }

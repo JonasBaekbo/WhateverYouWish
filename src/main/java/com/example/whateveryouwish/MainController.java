@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+
 
 @Controller
 public class MainController {
@@ -17,13 +20,22 @@ public class MainController {
     @GetMapping("/")
     public String index(Model m) {
         m.addAttribute("title", "Forside");
-        DB.connectDB();
+        /*DB.connectDB();*/
         return "index";
     }
 
-    @GetMapping("/make-a-wish")
+    /*@GetMapping("/make-a-wish")
     public String makeAWish(Model m) {
         m.addAttribute("title", "Make a wish!");
+        db.selectData();
+        return "make-a-wish";
+    }*/
+
+    @GetMapping("/make-a-wish")
+    public String makeAWish(HttpServletRequest request, Model model) {
+        int userID = db.getUserIdForRequest(request);
+        ArrayList<Wish> wishList = db.getWishListForUser(userID);
+        model.addAttribute("wishList", wishList);
         return "make-a-wish";
     }
 
@@ -33,24 +45,28 @@ public class MainController {
     }
 
     @PostMapping(value = "/createuser")
-
     public String createNewUser(@RequestParam("username") String username, @RequestParam("password") String password) {
         boolean testEmail = db.hasUserNameAllReady(username);
         if (!testEmail) {
             db.addUserToDB(username, password);
-            return "make-a-wish";
+            return "redirect:/login";
         } else {
-            return "please-try-again";
+            return "redirect:/please-try-again";
         }
     }
 
     @PostMapping("/make-a-wish")
-    public String createWish(@RequestParam("itemName") String itemName, @RequestParam("description") String description,
-                             @RequestParam("quantity") int quantity) {
-        list.addwish(itemName, description, quantity);
+    public String createWish( @RequestParam("itemName") String itemName, @RequestParam("description") String description,
+                             @RequestParam("quantity")int quantity, HttpServletRequest request) {
+        int userID = db.getUserIdForRequest(request);
+        list.addwish(itemName, description, quantity, userID);
         return "redirect:/make-a-wish";
     }
 
+    @GetMapping("/please-try-again")
+    public String pleasTryAgain(){
+        return "please-try-again";
+    }
 
 
 }

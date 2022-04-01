@@ -9,12 +9,12 @@
         <div class="loginPosition">
             <main id="main">
 
-                    <p>For at kunne lave din ønskeliste skal du have et login.<br>
-                        Hvis du allerede har en bruger kan du loge ind her.</p>
-                    <p>
+                <p>For at kunne lave din ønskeliste skal du have et login.<br>
+                    Hvis du allerede har en bruger kan du loge ind her.</p>
+                <p>
                 <form th:action="@{/login}" method="post" style="max-width: 400px; margin: 0 auto;">
-                        <label for="username"></label>
-                        <input id="username" type="text" placeholder="Brugernavn" name="username" required/>
+                    <label for="username"></label>
+                    <input id="username" type="text" placeholder="Brugernavn" name="username" required/>
                     </p>
                     <p>
                         <label for="password"></label>
@@ -26,11 +26,8 @@
                 </form>
                 <p> Ellers kan du oprette en ny bruger her:</p>
                 <form method="GET" action="/createuser">
-                    <input type="submit" value=" Opret ny bruger ">
+                    <input type="submit" value=" Opret ny bruger "/>
                 </form>
-                <div class="loginLogo"><img th:src="@{images/wishlist.png}"/>
-
-                </div>
             </main>
         </div>
     </div>
