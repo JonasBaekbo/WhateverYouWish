@@ -15,7 +15,7 @@ public class MainController {
 
     DB db = new DB();
 
-    ListOfWish list = new ListOfWish();
+    addWishTooDB list = new addWishTooDB();
 
     @GetMapping("/")
     public String index(Model m) {

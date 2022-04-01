@@ -1,8 +1,6 @@
 package com.example.whateveryouwish;
 
-import java.util.ArrayList;
-
-public class ListOfWish {
+public class addWishTooDB {
 
     DB db = new DB();
 
