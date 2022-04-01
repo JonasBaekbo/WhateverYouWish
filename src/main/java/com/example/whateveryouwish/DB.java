@@ -135,10 +135,11 @@ public class DB {
         int userID = getUserIdForName(userName);
         return userID;
     }
+
     public static void removeWish(String wishID){
         try {
-            String searchForUser = "DELETE FROM whateveryouwushdb.wish WHERE `id_wish` = ?";
-            PreparedStatement stmt = con.prepareStatement(wishID);
+            String removeWishID = "DELETE FROM whateveryouwishdb.wish WHERE `id_wish` = ?";
+            PreparedStatement stmt = con.prepareStatement(removeWishID);
             stmt.setString(1, wishID);
             stmt.executeUpdate();
 

@@ -16,7 +16,7 @@
                         <tr>
                             <th style="width: 45%"> Ønske </th>
                             <th style="width: 45%"> Beskrivelse </th>
-                            <th style="justify-content: right"> Antal </th>
+                            <th style="text-align:right"> Antal </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -26,7 +26,7 @@
                         <tr th:each="wish: ${wishList}">
                             <td><span th:text="${wish.itemName}"> Ønske </span></td>
                             <td><span th:text="${wish.description}"> Beskrivelse </span></td>
-                            <td><span th:text="${wish.quantity}"> Antal </span></td>
+                            <td style="text-align:right"><span th:text="${wish.quantity}"> Antal </span></td>
                             <td><button type="button" class="btn btn-primary"  th:attr="onclick=|remove('${wish.wishID}')|"><i class="fa-solid fa-square-xmark"></i></button></td>
 
                         </tr>
