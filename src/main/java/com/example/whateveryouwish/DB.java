@@ -135,4 +135,15 @@ public class DB {
         int userID = getUserIdForName(userName);
         return userID;
     }
+    public static void removeWish(String wishID){
+        try {
+            String searchForUser = "DELETE FROM whateveryouwushdb.wish WHERE `id_wish` = ?";
+            PreparedStatement stmt = con.prepareStatement(wishID);
+            stmt.setString(1, wishID);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("error in removewish-method");
+        }
+    }
 }

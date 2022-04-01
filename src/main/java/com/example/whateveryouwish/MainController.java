@@ -54,6 +54,12 @@ public class MainController {
      list.addwish(itemName, description, quantity, userID);
         return "redirect:/make-a-wish";
     }
+    @GetMapping("/remove")
+    public String remove(@RequestParam("id") String wishID){
+        System.out.println(wishID);
+        DB.removeWish(wishID);
+        return "redirect:/make-a-wish";
+    }
 
     @GetMapping("/please-try-again")
     public String pleasTryAgain(){

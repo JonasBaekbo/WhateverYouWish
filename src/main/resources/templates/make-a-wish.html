@@ -27,6 +27,7 @@
                             <td><span th:text="${wish.itemName}"> Ønske </span></td>
                             <td><span th:text="${wish.description}"> Beskrivelse </span></td>
                             <td><span th:text="${wish.quantity}"> Antal </span></td>
+                            <td><button type="button" class="btn btn-primary"  th:attr="onclick=|remove('${wish.wishID}')|"><i class="fa-solid fa-square-xmark"></i></button></td>
 
                         </tr>
                         </tbody>
@@ -56,5 +57,15 @@
     </div>
 </div>
 <footer th:include="footer :: footer"></footer>
+<script>
+    function remove(id) {
+        if (confirm("Er du sikker på at du vil slette det valgte ønske?")) { //Spørg om personen er sikker
+            fetch('http://localhost:8080/remove?id=' + id)
+                .then((response) => {
+                    window.location.replace('/make-a-wish');
+                })
+        }
+    }
+</script>
 </body>
 </html>
