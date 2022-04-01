@@ -161,6 +161,7 @@ p.centertext {
 table, th, td {
     border-bottom: 1px solid white;
     border-collapse: collapse;
+    word-wrap: break-word;
 }
 
 

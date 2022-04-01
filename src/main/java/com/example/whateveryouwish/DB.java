@@ -117,13 +117,13 @@ public class DB {
                 String description = rs.getString("description");
                 int quantity = rs.getInt("quantity");
                 int userID = rs.getInt("user_id");
+                int wishID=rs.getInt("id_wish");
 
-                Wish wish = new Wish(itemName, description, quantity, userID);
+                Wish wish = new Wish(wishID,itemName, description, quantity, userID);
                 wishList.add(wish);
-
             }
         } catch (Exception e) {
-            System.out.println("something wen't wrong in selectData");
+            System.out.println("something wen't wrong in getWishListForUser");
 
         }
         return wishList;

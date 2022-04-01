@@ -51,7 +51,7 @@ public class MainController {
     public String createWish( @RequestParam("itemName") String itemName, @RequestParam("description") String description,
                              @RequestParam("quantity")int quantity, HttpServletRequest request) {
         int userID = db.getUserIdForRequest(request);
-        list.addwish(itemName, description, quantity, userID);
+     list.addwish(itemName, description, quantity, userID);
         return "redirect:/make-a-wish";
     }
 
