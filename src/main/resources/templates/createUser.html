@@ -9,7 +9,7 @@
 <link rel="stylesheet" th:href="@{style.css}" href="../static/style.css">
 <div class="container">
     <header th:include="header :: header"></header>
-        <div class="loginPosition">
+    <div class="loginPosition">
         <div id="wrap">
             <main id="main">
                 <form th:action="@{/createuser}" method="POST">
@@ -22,10 +22,10 @@
                         <input id="password" type="password" placeholder="Opret password" name="password" required/>
                     </p>
                     <p>
-                        <button type="submit"> Opret bruger </button>
+                        <button type="submit"> Opret bruger</button>
                     </p>
                 </form>
-                <div class="centerlogo"> <img th:src="@{images/wishlist.png}"/></div>
+                <div class="centerlogo"><img th:src="@{images/wishlist.png}"/></div>
             </main>
         </div>
     </div>

@@ -2,7 +2,7 @@ package com.example.whateveryouwish;
 
 public class User {
 
-    private String userName;
+  /*  private String userName;
     private String password;
 
 
@@ -14,7 +14,6 @@ public class User {
     public User() {
 
     }
-
     public String getUserName() {
         return userName;
     }
@@ -34,5 +33,5 @@ public class User {
     @Override
     public String toString() {
         return userName + " " + password;
-    }
+    }*/
 }

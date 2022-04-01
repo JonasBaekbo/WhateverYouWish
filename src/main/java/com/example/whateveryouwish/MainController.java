@@ -65,7 +65,4 @@ public class MainController {
     public String pleasTryAgain(){
         return "please-try-again";
     }
-
-
 }
-
