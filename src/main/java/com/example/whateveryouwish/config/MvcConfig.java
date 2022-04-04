@@ -1,4 +1,4 @@
-package com.example.whateveryouwish;
+package com.example.whateveryouwish.config;
 
 import org.springframework.context.annotation.*;
 import org.springframework.web.servlet.config.annotation.*;

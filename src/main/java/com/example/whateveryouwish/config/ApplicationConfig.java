@@ -1,4 +1,4 @@
-package com.example.whateveryouwish;
+package com.example.whateveryouwish.config;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

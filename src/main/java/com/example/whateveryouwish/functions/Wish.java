@@ -1,4 +1,4 @@
-package com.example.whateveryouwish;
+package com.example.whateveryouwish.functions;
 
 public class Wish {
 

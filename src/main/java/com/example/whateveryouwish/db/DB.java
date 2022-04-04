@@ -1,5 +1,6 @@
-package com.example.whateveryouwish;
+package com.example.whateveryouwish.db;
 
+import com.example.whateveryouwish.functions.Wish;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.servlet.http.HttpServletRequest;

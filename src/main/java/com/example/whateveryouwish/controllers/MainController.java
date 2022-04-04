@@ -1,5 +1,7 @@
-package com.example.whateveryouwish;
+package com.example.whateveryouwish.controllers;
 
+import com.example.whateveryouwish.functions.Wish;
+import com.example.whateveryouwish.db.DB;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
