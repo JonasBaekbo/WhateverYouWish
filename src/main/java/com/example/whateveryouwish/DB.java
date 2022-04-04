@@ -68,6 +68,11 @@ public class DB {
         }
     }
 
+    public void makeWish(String itemName, String description, int quantity, int userID){
+        Wish wish = new Wish(itemName,description,quantity,userID);
+        addWishToDB(wish);
+    }
+
     public void addWishToDB(Wish wish) {
         try {
             String insert = "INSERT INTO whateveryouwishdb.wish (user_id, name, description, quantity) VALUES (?, ?, ?, ?)";

@@ -15,8 +15,6 @@ public class MainController {
 
     DB db = new DB();
 
-    addWishTooDB list = new addWishTooDB();
-
     @GetMapping("/")
     public String index(Model m) {
         m.addAttribute("title", "Forside");
@@ -51,7 +49,7 @@ public class MainController {
     public String createWish( @RequestParam("itemName") String itemName, @RequestParam("description") String description,
                              @RequestParam("quantity")int quantity, HttpServletRequest request) {
         int userID = db.getUserIdForRequest(request);
-     list.addwish(itemName, description, quantity, userID);
+     db.makeWish(itemName, description, quantity, userID);
         return "redirect:/make-a-wish";
     }
     @GetMapping("/remove")
