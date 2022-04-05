@@ -23,7 +23,7 @@ public class DB {
         }
 
         try {
-            String url = "jdbc:mysql://whateveryouwishdb.mysql.database.azure.com/whateveryouwishdb";
+            String url = "jdbc:mysql://whateveryouwishdb.mysql.database.azure.com:3306/whateveryouwishdb?useSSL=TRUE&requireSSL=FALSE";
             con = DriverManager.getConnection(url, "Themasterofall@whateveryouwishdb", "77tgbv77.");
             System.out.println("Ok, we have a connection.");
             return con;
