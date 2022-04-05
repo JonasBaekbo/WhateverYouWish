@@ -57,7 +57,7 @@ public class DB {
         String rawPassword = password;
         String encodedPassword = encoder.encode(rawPassword);
         try {
-            String insert = "INSERT INTO whateveryouwishdb.users (username, password, role, enabled) VALUES (?, ?, ?, ?)";
+            String insert = "INSERT INTO whateveryouwishdb.users (`username`, `password`, `role`, `enabled`) VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = con.prepareStatement(insert);
             stmt.setString(1, username);
             stmt.setString(2, encodedPassword);
@@ -77,7 +77,7 @@ public class DB {
 
     public void addWishToDB(Wish wish) {
         try {
-            String insert = "INSERT INTO whateveryouwishdb.wish (user_id, name, description, quantity) VALUES (?, ?, ?, ?)";
+            String insert = "INSERT INTO whateveryouwishdb.wish (`user_id`, `name`, `description`, `quantity`) VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = con.prepareStatement(insert);
             stmt.setInt(1, wish.getUserId());
             stmt.setString(2, wish.getItemName());
