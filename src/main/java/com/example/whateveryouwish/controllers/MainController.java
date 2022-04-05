@@ -24,12 +24,12 @@ public class MainController {
     }
 
 
-    @GetMapping("/createUser")
+    @GetMapping("/createuser")
     public String createUser() {
         return "createUser";
     }
 
-    @PostMapping(value = "/createUser")
+    @PostMapping(value = "/createuser")
     public String createNewUser(@RequestParam("username") String username, @RequestParam("password") String password) {
         boolean testEmail = db.hasUserNameAllReady(username);
         if (!testEmail) {
