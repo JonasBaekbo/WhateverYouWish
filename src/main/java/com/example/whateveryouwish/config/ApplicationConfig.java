@@ -16,6 +16,9 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 import java.io.IOException;
 
+//https://www.codejava.net/frameworks/spring-boot/form-authentication-with-jdbc-and-mysql
+//https://www.codejava.net/frameworks/spring-boot/http-basic-authentication-with-in-memory-users
+//https://www.codejava.net/frameworks/spring-boot/spring-boot-security-customize-login-and-logout
 @Configuration
 @EnableWebSecurity
 public class ApplicationConfig extends WebSecurityConfigurerAdapter {

@@ -69,7 +69,8 @@ public class DB {
         }
     }
 
-    public void makeWish(String itemName, String description, int quantity, int userID){
+    public void makeWish(String itemName, String description, int quantity,HttpServletRequest request){
+        int userID = getUserIdFromRequest(request);
         Wish wish = new Wish(itemName,description,quantity,userID);
         addWishToDB(wish);
     }
@@ -106,9 +107,10 @@ public class DB {
         }
     }
 
-    public ArrayList<Wish> getWishListForUser(int currentUserID) {
-       
+    public ArrayList<Wish> getWishListForUser(HttpServletRequest request) {
         ArrayList<Wish> wishList = new ArrayList<>();
+        int currentUserID = getUserIdFromRequest(request);
+
         try {
             String select = "select * from whateveryouwishdb.wish, whateveryouwishdb.users where whateveryouwishdb.wish.user_id = whateveryouwishdb.users.user_id and whateveryouwishdb.wish.user_id = ?";
             PreparedStatement stmt = con.prepareStatement(select);
@@ -133,14 +135,14 @@ public class DB {
         return wishList;
     }
 
-    public int getUserIdForRequest(HttpServletRequest request) {
+    public int getUserIdFromRequest(HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
         String userName = principal.getName();
         int userID = getUserIdForName(userName);
         return userID;
     }
 
-    public static void removeWish(String wishID){
+    public void removeWish(String wishID){
         try {
             String removeWishID = "DELETE FROM whateveryouwishdb.wish WHERE `id_wish` = ?";
             PreparedStatement stmt = con.prepareStatement(removeWishID);
@@ -148,7 +150,7 @@ public class DB {
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println("error in removewish-method");
+            System.out.println("error in removeWish-method");
         }
     }
 }

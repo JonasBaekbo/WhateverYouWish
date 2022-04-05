@@ -22,6 +22,13 @@ public class Wish {
         this.quantity = quantity;
         this.userID = userID;
     }
+    public Wish(String itemName, int quantity, int userID) {
+        this.itemName = itemName;
+        this.description = "";
+        this.quantity = quantity;
+        this.userID = userID;
+
+    }
 
     public String getItemName() {
         return itemName;

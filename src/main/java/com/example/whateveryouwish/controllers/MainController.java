@@ -23,20 +23,13 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/make-a-wish")
-    public String makeAWish(HttpServletRequest request, Model model) {
-        int userID = db.getUserIdForRequest(request);
-        ArrayList<Wish> wishList = db.getWishListForUser(userID);
-        model.addAttribute("wishList", wishList);
-        return "make-a-wish";
-    }
 
-    @GetMapping("/createuser")
+    @GetMapping("/createUser")
     public String createUser() {
         return "createUser";
     }
 
-    @PostMapping(value = "/createuser")
+    @PostMapping(value = "/createUser")
     public String createNewUser(@RequestParam("username") String username, @RequestParam("password") String password) {
         boolean testEmail = db.hasUserNameAllReady(username);
         if (!testEmail) {
@@ -47,22 +40,27 @@ public class MainController {
         }
     }
 
+    @GetMapping("/make-a-wish")
+    public String makeAWish(HttpServletRequest request, Model model) {
+        ArrayList<Wish> wishList = db.getWishListForUser(request);
+        model.addAttribute("wishList", wishList);
+        return "make-a-wish";
+    }
+
     @PostMapping("/make-a-wish")
     public String createWish( @RequestParam("itemName") String itemName, @RequestParam("description") String description,
                              @RequestParam("quantity")int quantity, HttpServletRequest request) {
-        int userID = db.getUserIdForRequest(request);
-     db.makeWish(itemName, description, quantity, userID);
+        db.makeWish(itemName, description, quantity, request);
         return "redirect:/make-a-wish";
     }
     @GetMapping("/remove")
     public String remove(@RequestParam("id") String wishID){
-        System.out.println(wishID);
-        DB.removeWish(wishID);
+        db.removeWish(wishID);
         return "redirect:/make-a-wish";
     }
 
     @GetMapping("/please-try-again")
-    public String pleasTryAgain(){
+    public String pleaseTryAgain(){
         return "please-try-again";
     }
 }

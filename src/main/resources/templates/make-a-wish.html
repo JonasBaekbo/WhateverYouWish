@@ -38,13 +38,13 @@
                     <form th:action="@{/make-a-wish}" method="post">
                         <section class="content">
                             <p>
-                                <input type="text" id="itemName" placeholder="Navn p&aring; &oslash;nske" name="itemName"/>
+                                <input type="text" id="itemName" placeholder="Navn p&aring; &oslash;nske" name="itemName" required/>
                             </p>
                             <p>
                                 <input type="text" id="description" placeholder="Beskrivelse af &oslash;nske" name="description"/>
                             </p>
                             <p>
-                                <input type="number" id="quantity" placeholder="Antal" name="quantity"/>
+                                <input type="number" id="quantity" placeholder="Antal" name="quantity" required/>
                             </p>
                             <p>
                                 <input type="submit" value=" Tilf&oslash;j "/>

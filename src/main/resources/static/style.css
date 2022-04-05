@@ -9,7 +9,7 @@ body {
 }
 
 body {
-    background-image: linear-gradient(to right bottom, #82eff5, #0dbeff);
+    background-image: linear-gradient(to right bottom, #82eff5, #15ade3);
     background-attachment: fixed;
     font-size: 1.5rem;
     height: 100%;
@@ -26,7 +26,6 @@ body {
 
 @media only screen and (min-width: 1500px) and (max-width: 2000px) {
     .container {
-
         padding-right: 10%;
         padding-left: 10%;
     }
@@ -66,10 +65,24 @@ header li {
     height: 30%;
     margin-top: auto;
     margin-bottom: auto;
+
 }
 
 input.nav-link {
-    color: black;
+    color: #264973;
+}
+
+a:link {
+    color: #264973;
+}
+
+a:hover {
+    color: #0a58ca;
+
+}
+
+a:visited {
+    color: #264973;
 }
 
 footer {
@@ -120,16 +133,10 @@ img {
 
 }
 
-a:link {
-    color: black;
-}
-
-a:visited {
-    color: black;
-}
-
 h4 {
     text-align: center;
+    text: bold;
+
 }
 
 p.centertext {
@@ -162,15 +169,14 @@ p.centertext {
     padding-top: 75px;
 }
 
+table {
+    padding-bottom: 20%;
+}
+
 table, th, td {
     border-bottom: 1px solid white;
     border-collapse: collapse;
     word-wrap: break-word;
-}
-.btn-primary {
-    color: #264973;
-    background-color: transparent;
-    border-color: transparent;
 }
 
 .btn-primary {
