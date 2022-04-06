@@ -65,4 +65,10 @@ public class MainController {
     public String pleaseTryAgain() {
         return "please-try-again";
     }
+
+    @RequestMapping("/login-error")
+    public String loginError(Model model) {
+        model.addAttribute("loginError", true);
+        return "login";
+    }
 }

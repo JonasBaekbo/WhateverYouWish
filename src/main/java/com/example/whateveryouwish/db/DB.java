@@ -34,6 +34,7 @@ public class DB {
 
     public int getUserIdFromName(String userName) {
         connectDB();
+        System.out.println("getUserIdFromName");
         try {
             String searchForUser = "SELECT user_id FROM whateveryouwishdb.users WHERE `username` = ?";
             PreparedStatement stmt = con.prepareStatement(searchForUser);
@@ -43,7 +44,6 @@ public class DB {
             ResultSet rs = stmt.getResultSet();
             rs.next();
             int userID = rs.getInt(1);
-            System.out.println(userID);
             return userID;
         } catch (SQLException e) {
             System.out.println("error in getUserIdForName-method");
@@ -54,6 +54,7 @@ public class DB {
 
     public void addUserToDB(String username, String password) {
         connectDB();
+        System.out.println("addUserToDB");
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String rawPassword = password;
         String encodedPassword = encoder.encode(rawPassword);
@@ -76,7 +77,6 @@ public class DB {
     }
 
     public void addWishToDB(Wish wish) {
-        connectDB();
         try {
             String insert = "INSERT INTO whateveryouwishdb.wish (`user_id`, `name`, `description`, `quantity`) VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = con.prepareStatement(insert);
@@ -92,6 +92,7 @@ public class DB {
 
     public boolean hasUserNameAllReady(String user) {
         connectDB();
+        System.out.println("hasUserNameAllReady");
         try {
             String searchForUser = "SELECT COUNT(*) FROM whateveryouwishdb.users WHERE `username` = ?";
             PreparedStatement stmt = con.prepareStatement(searchForUser);
@@ -110,7 +111,6 @@ public class DB {
     }
 
     public ArrayList<Wish> getWishListForUser(int currentUserID) {
-        connectDB();
         ArrayList<Wish> wishList = new ArrayList<>();
 
         try {
@@ -139,6 +139,7 @@ public class DB {
 
     public void removeWish(String wishID){
         connectDB();
+        System.out.println("removeWish");
         try {
             String removeWishID = "DELETE FROM whateveryouwishdb.wish WHERE `id_wish` = ?";
             PreparedStatement stmt = con.prepareStatement(removeWishID);

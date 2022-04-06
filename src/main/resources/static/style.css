@@ -184,3 +184,8 @@ table, th, td {
     background-color: transparent;
     border-color: transparent;
 }
+
+.error{
+    color: #b71414;
+
+}
