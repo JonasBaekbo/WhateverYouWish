@@ -44,7 +44,7 @@ public class DB {
             ResultSet rs = stmt.getResultSet();
             rs.next();
             int userID = rs.getInt(1);
-
+            System.out.println(userID);
             return userID;
         } catch (SQLException e) {
             System.out.println("error in getUserIdForName-method");
@@ -133,9 +133,10 @@ public class DB {
         return wishList;
     }
 
-    public int getUserIdFromRequest(HttpServletRequest request) {
-        Principal principal = request.getUserPrincipal();
-        String userName = principal.getName();
+
+    public int getUserIdFromRequest(String userName) {
+        /*Principal principal = request.getUserPrincipal();
+        String userName = principal.getName();*/
         int userID = getUserIdForName(userName);
         return userID;
     }

@@ -2,13 +2,13 @@ package com.example.whateveryouwish.controllers;
 
 import com.example.whateveryouwish.functions.Wish;
 import com.example.whateveryouwish.db.DB;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.util.ArrayList;
 
 
@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class MainController {
 
     DB db = new DB();
+
 
     @GetMapping("/")
     public String index(Model m) {
@@ -41,8 +42,9 @@ public class MainController {
     }
 
     @GetMapping("/make-a-wish")
-    public String showWishlist(HttpServletRequest request, Model model) {
-        int userID= db.getUserIdFromRequest(request);
+   public String showWishlist(Authentication authentication, Model model)
+     {
+       int userID= db.getUserIdFromRequest(authentication.getName());
         ArrayList<Wish> wishList = db.getWishListForUser(userID);
         model.addAttribute("wishList", wishList);
         return "make-a-wish";
@@ -50,8 +52,8 @@ public class MainController {
 
     @PostMapping("/make-a-wish")
     public String createWish( @RequestParam("itemName") String itemName, @RequestParam("description") String description,
-                             @RequestParam("quantity")int quantity, HttpServletRequest request) {
-        int userID=db.getUserIdFromRequest(request);
+                             @RequestParam("quantity")int quantity, Authentication authentication) {
+        int userID=db.getUserIdFromRequest(authentication.getName());
         db.makeWish(itemName, description, quantity, userID);
         return "redirect:/make-a-wish";
     }
