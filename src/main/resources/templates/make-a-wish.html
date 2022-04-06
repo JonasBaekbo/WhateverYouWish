@@ -60,10 +60,7 @@
 <script>
     function remove(id) {
         if (confirm("Er du sikker på at du vil slette det valgte ønske?")) {
-            fetch('http://whateveryouwish.azurewebsites.net/remove?id=' + id) // If program needs to be run on localhost, change to localhost:8080
-                .then((response) => {
-                    window.location.replace('/make-a-wish');
-                })
+            window.location.replace("http://whateveryouwish.azurewebsites.net/remove?id=" + id) // If program needs to be run on localhost, change to localhost:8080
         }
     }
 </script>
