@@ -41,8 +41,9 @@ public class MainController {
     }
 
     @GetMapping("/make-a-wish")
-    public String makeAWish(HttpServletRequest request, Model model) {
-        ArrayList<Wish> wishList = db.getWishListForUser(request);
+    public String showWishlist(HttpServletRequest request, Model model) {
+        int userID= db.getUserIdFromRequest(request);
+        ArrayList<Wish> wishList = db.getWishListForUser(userID);
         model.addAttribute("wishList", wishList);
         return "make-a-wish";
     }
@@ -50,7 +51,8 @@ public class MainController {
     @PostMapping("/make-a-wish")
     public String createWish( @RequestParam("itemName") String itemName, @RequestParam("description") String description,
                              @RequestParam("quantity")int quantity, HttpServletRequest request) {
-        db.makeWish(itemName, description, quantity, request);
+        int userID=db.getUserIdFromRequest(request);
+        db.makeWish(itemName, description, quantity, userID);
         return "redirect:/make-a-wish";
     }
     @GetMapping("/remove")

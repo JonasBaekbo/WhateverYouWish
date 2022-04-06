@@ -69,8 +69,7 @@ public class DB {
         }
     }
 
-    public void makeWish(String itemName, String description, int quantity,HttpServletRequest request){
-        int userID = getUserIdFromRequest(request);
+    public void makeWish(String itemName, String description, int quantity,int userID){
         Wish wish = new Wish(itemName,description,quantity,userID);
         addWishToDB(wish);
     }
@@ -107,9 +106,8 @@ public class DB {
         }
     }
 
-    public ArrayList<Wish> getWishListForUser(HttpServletRequest request) {
+    public ArrayList<Wish> getWishListForUser(int currentUserID) {
         ArrayList<Wish> wishList = new ArrayList<>();
-        int currentUserID = getUserIdFromRequest(request);
 
         try {
             String select = "SELECT * FROM whateveryouwishdb.wish, whateveryouwishdb.users WHERE whateveryouwishdb.wish.user_id = whateveryouwishdb.users.user_id AND whateveryouwishdb.wish.user_id = ?";
