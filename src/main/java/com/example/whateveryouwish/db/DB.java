@@ -3,8 +3,6 @@ package com.example.whateveryouwish.db;
 import com.example.whateveryouwish.functions.Wish;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.servlet.http.HttpServletRequest;
-import java.security.Principal;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -17,10 +15,10 @@ public class DB {
 
     //https://www.geeksforgeeks.org/singleton-class-java/
     public static Connection connectDB() {
-        if (con != null) {
+        /*if (con != null) {
             System.out.println("We reuse our connection");
             return con;
-        }
+        }*/
 
         try {
             String url = "jdbc:mysql://whateveryouwishdb.mysql.database.azure.com:3306/whateveryouwishdb";
@@ -34,7 +32,8 @@ public class DB {
         return con;
     }
 
-    public int getUserIdForName(String userName) {
+    public int getUserIdFromName(String userName) {
+        connectDB();
         try {
             String searchForUser = "SELECT user_id FROM whateveryouwishdb.users WHERE `username` = ?";
             PreparedStatement stmt = con.prepareStatement(searchForUser);
@@ -48,11 +47,13 @@ public class DB {
             return userID;
         } catch (SQLException e) {
             System.out.println("error in getUserIdForName-method");
+            e.printStackTrace();
             return 0;
         }
     }
 
     public void addUserToDB(String username, String password) {
+        connectDB();
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String rawPassword = password;
         String encodedPassword = encoder.encode(rawPassword);
@@ -75,6 +76,7 @@ public class DB {
     }
 
     public void addWishToDB(Wish wish) {
+        connectDB();
         try {
             String insert = "INSERT INTO whateveryouwishdb.wish (`user_id`, `name`, `description`, `quantity`) VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = con.prepareStatement(insert);
@@ -89,6 +91,7 @@ public class DB {
     }
 
     public boolean hasUserNameAllReady(String user) {
+        connectDB();
         try {
             String searchForUser = "SELECT COUNT(*) FROM whateveryouwishdb.users WHERE `username` = ?";
             PreparedStatement stmt = con.prepareStatement(searchForUser);
@@ -107,6 +110,7 @@ public class DB {
     }
 
     public ArrayList<Wish> getWishListForUser(int currentUserID) {
+        connectDB();
         ArrayList<Wish> wishList = new ArrayList<>();
 
         try {
@@ -133,15 +137,8 @@ public class DB {
         return wishList;
     }
 
-
-    public int getUserIdFromRequest(String userName) {
-        /*Principal principal = request.getUserPrincipal();
-        String userName = principal.getName();*/
-        int userID = getUserIdForName(userName);
-        return userID;
-    }
-
     public void removeWish(String wishID){
+        connectDB();
         try {
             String removeWishID = "DELETE FROM whateveryouwishdb.wish WHERE `id_wish` = ?";
             PreparedStatement stmt = con.prepareStatement(removeWishID);

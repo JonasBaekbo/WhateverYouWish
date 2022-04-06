@@ -7,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import java.security.Principal;
 import java.util.ArrayList;
 
 
@@ -42,29 +40,29 @@ public class MainController {
     }
 
     @GetMapping("/make-a-wish")
-   public String showWishlist(Principal principal, Model model)
-     {
-       int userID= db.getUserIdFromRequest(principal.getName());
+    public String showWishlist(Authentication auth, Model model) {
+        int userID = db.getUserIdFromName(auth.getName());
         ArrayList<Wish> wishList = db.getWishListForUser(userID);
         model.addAttribute("wishList", wishList);
         return "make-a-wish";
     }
 
     @PostMapping("/make-a-wish")
-    public String createWish( @RequestParam("itemName") String itemName, @RequestParam("description") String description,
-                             @RequestParam("quantity")int quantity, Principal principal) {
-        int userID=db.getUserIdFromRequest(principal.getName());
+    public String createWish(@RequestParam("itemName") String itemName, @RequestParam("description") String description,
+                             @RequestParam("quantity") int quantity, Authentication auth) {
+        int userID = db.getUserIdFromName(auth.getName());
         db.makeWish(itemName, description, quantity, userID);
         return "redirect:/make-a-wish";
     }
+
     @GetMapping("/remove")
-    public String remove(@RequestParam("id") String wishID){
+    public String remove(@RequestParam("id") String wishID) {
         db.removeWish(wishID);
         return "redirect:/make-a-wish";
     }
 
     @GetMapping("/please-try-again")
-    public String pleaseTryAgain(){
+    public String pleaseTryAgain() {
         return "please-try-again";
     }
 }
