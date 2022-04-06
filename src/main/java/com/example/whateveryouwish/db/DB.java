@@ -112,7 +112,7 @@ public class DB {
         int currentUserID = getUserIdFromRequest(request);
 
         try {
-            String select = "select * from whateveryouwishdb.wish, whateveryouwishdb.users where whateveryouwishdb.wish.user_id = whateveryouwishdb.users.user_id and whateveryouwishdb.wish.user_id = ?";
+            String select = "SELECT * FROM whateveryouwishdb.wish, whateveryouwishdb.users WHERE whateveryouwishdb.wish.user_id = whateveryouwishdb.users.user_id AND whateveryouwishdb.wish.user_id = ?";
             PreparedStatement stmt = con.prepareStatement(select);
             stmt.setInt(1, currentUserID);
             stmt.execute();
