@@ -42,9 +42,9 @@ public class MainController {
     }
 
     @GetMapping("/make-a-wish")
-   public String showWishlist(Authentication authentication, Model model)
+   public String showWishlist(Principal principal, Model model)
      {
-       int userID= db.getUserIdFromRequest(authentication.getName());
+       int userID= db.getUserIdFromRequest(principal.getName());
         ArrayList<Wish> wishList = db.getWishListForUser(userID);
         model.addAttribute("wishList", wishList);
         return "make-a-wish";
@@ -52,8 +52,8 @@ public class MainController {
 
     @PostMapping("/make-a-wish")
     public String createWish( @RequestParam("itemName") String itemName, @RequestParam("description") String description,
-                             @RequestParam("quantity")int quantity, Authentication authentication) {
-        int userID=db.getUserIdFromRequest(authentication.getName());
+                             @RequestParam("quantity")int quantity, Principal principal) {
+        int userID=db.getUserIdFromRequest(principal.getName());
         db.makeWish(itemName, description, quantity, userID);
         return "redirect:/make-a-wish";
     }
