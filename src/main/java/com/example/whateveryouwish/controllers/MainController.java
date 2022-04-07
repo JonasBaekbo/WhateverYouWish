@@ -29,13 +29,14 @@ public class MainController {
     }
 
     @PostMapping(value = "/createuser")
-    public String createNewUser(@RequestParam("username") String username, @RequestParam("password") String password) {
+    public String createNewUser(Model model, @RequestParam("username") String username, @RequestParam("password") String password) {
         boolean testEmail = db.hasUserNameAllReady(username);
         if (!testEmail) {
             db.addUserToDB(username, password);
             return "redirect:/login";
         } else {
-            return "redirect:/please-try-again";
+            model.addAttribute("UNError", true);
+            return "createUser";
         }
     }
 
@@ -61,10 +62,6 @@ public class MainController {
         return "redirect:/make-a-wish";
     }
 
-    @GetMapping("/please-try-again")
-    public String pleaseTryAgain() {
-        return "please-try-again";
-    }
 
     @RequestMapping("/login-error")
     public String loginError(Model model) {
