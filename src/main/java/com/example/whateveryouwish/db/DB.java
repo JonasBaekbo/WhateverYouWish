@@ -13,12 +13,7 @@ public class DB {
         connectDB();
     }
 
-    //https://www.geeksforgeeks.org/singleton-class-java/
     public static Connection connectDB() {
-        /*if (con != null) {
-            System.out.println("We reuse our connection");
-            return con;
-        }*/
 
         try {
             String url = "jdbc:mysql://whateveryouwishdb.mysql.database.azure.com:3306/whateveryouwishdb";
