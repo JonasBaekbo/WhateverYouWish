@@ -12,7 +12,8 @@
     <div class="loginPosition">
         <div id="wrap">
             <main id="main">
-                <p th:if="${UNError}" class="error">Brugernavn findes allerede! Prøv venligst med et andet brugernavn</p>
+                <p th:if="${UNError}" class="error">Brugernavn findes allerede! Prøv venligst med et andet
+                    brugernavn</p>
 
                 <form th:action="@{/createuser}" method="POST">
                     <p>

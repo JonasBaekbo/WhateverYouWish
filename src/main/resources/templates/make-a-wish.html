@@ -11,24 +11,28 @@
             <div class="row">
                 <div class="col-md-6">
                     <p>Ønsker på din &oslash;nskeliste:</p>
-                    <table style ="width: 90%">
+                    <table style="width: 90%">
                         <thead>
                         <tr>
-                            <th style="width: 42%"> Ønske </th>
-                            <th style="width: 42%"> Beskrivelse </th>
-                            <th > Antal </th>
+                            <th style="width: 42%"> Ønske</th>
+                            <th style="width: 42%"> Beskrivelse</th>
+                            <th> Antal</th>
                             <th style="width: 15% ;text-align:right">slet</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:if="${wishList.empty}">
-                            <td colspan="2"> Der er ikke registeret nogle ønsker </td>
+                            <td colspan="2"> Der er ikke registeret nogle ønsker</td>
                         </tr>
                         <tr th:each="wish: ${wishList}">
                             <td><span th:text="${wish.itemName}"> Ønske </span></td>
                             <td><span th:text="${wish.description}"> Beskrivelse </span></td>
                             <td style="text-align:right"><span th:text="${wish.quantity}"> Antal </span></td>
-                            <td style="text-align:right"><button type="button" class="btn btn-primary"  th:attr="onclick=|remove('${wish.wishID}')|"><i class="fa-solid fa-square-xmark"></i></button></td>
+                            <td style="text-align:right">
+                                <button type="button" class="btn btn-primary"
+                                        th:attr="onclick=|remove('${wish.wishID}')|"><i
+                                        class="fa-solid fa-square-xmark"></i></button>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -38,10 +42,12 @@
                     <form th:action="@{/make-a-wish}" method="post">
                         <section class="content">
                             <p>
-                                <input type="text" id="itemName" placeholder="Navn p&aring; &oslash;nske" name="itemName" required/>
+                                <input type="text" id="itemName" placeholder="Navn p&aring; &oslash;nske"
+                                       name="itemName" required/>
                             </p>
                             <p>
-                                <input type="text" id="description" placeholder="Evt. beskrivelse af &oslash;nske" name="description"/>
+                                <input type="text" id="description" placeholder="Evt. beskrivelse af &oslash;nske"
+                                       name="description"/>
                             </p>
                             <p>
                                 <input type="number" id="quantity" placeholder="Antal" name="quantity" required/>

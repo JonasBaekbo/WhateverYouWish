@@ -18,7 +18,6 @@ public class DB {
         try {
             String url = "jdbc:mysql://whateveryouwishdb.mysql.database.azure.com:3306/whateveryouwishdb";
             con = DriverManager.getConnection(url, "Themasterofall@whateveryouwishdb", "77tgbv77.");
-            System.out.println("Ok, we have a connection.");
             return con;
         } catch (Exception e) {
             e.printStackTrace();
@@ -29,7 +28,6 @@ public class DB {
 
     public int getUserIdFromName(String userName) {
         connectDB();
-        System.out.println("getUserIdFromName");
         try {
             String searchForUser = "SELECT user_id FROM whateveryouwishdb.users WHERE `username` = ?";
             PreparedStatement stmt = con.prepareStatement(searchForUser);
@@ -41,7 +39,6 @@ public class DB {
             int userID = rs.getInt(1);
             return userID;
         } catch (SQLException e) {
-            System.out.println("error in getUserIdForName-method");
             e.printStackTrace();
             return 0;
         }
@@ -66,8 +63,8 @@ public class DB {
         }
     }
 
-    public void makeWish(String itemName, String description, int quantity,int userID){
-        Wish wish = new Wish(itemName,description,quantity,userID);
+    public void makeWish(String itemName, String description, int quantity, int userID) {
+        Wish wish = new Wish(itemName, description, quantity, userID);
         addWishToDB(wish);
     }
 
@@ -87,7 +84,6 @@ public class DB {
 
     public boolean hasUserNameAllReady(String user) {
         connectDB();
-        System.out.println("hasUserNameAllReady");
         try {
             String searchForUser = "SELECT COUNT(*) FROM whateveryouwishdb.users WHERE `username` = ?";
             PreparedStatement stmt = con.prepareStatement(searchForUser);
@@ -100,7 +96,7 @@ public class DB {
 
             return numUsers != 0;
         } catch (SQLException e) {
-            System.out.println("error in hasUser-method");
+            e.printStackTrace();
             return false;
         }
     }
@@ -120,21 +116,20 @@ public class DB {
                 String description = rs.getString("description");
                 int quantity = rs.getInt("quantity");
                 int userID = rs.getInt("user_id");
-                int wishID=rs.getInt("id_wish");
+                int wishID = rs.getInt("id_wish");
 
-                Wish wish = new Wish(wishID,itemName, description, quantity, userID);
+                Wish wish = new Wish(wishID, itemName, description, quantity, userID);
                 wishList.add(wish);
             }
         } catch (Exception e) {
-            System.out.println("something wen't wrong in getWishListForUser");
+            e.printStackTrace();
 
         }
         return wishList;
     }
 
-    public void removeWish(String wishID){
+    public void removeWish(String wishID) {
         connectDB();
-        System.out.println("removeWish");
         try {
             String removeWishID = "DELETE FROM whateveryouwishdb.wish WHERE `id_wish` = ?";
             PreparedStatement stmt = con.prepareStatement(removeWishID);
@@ -142,7 +137,7 @@ public class DB {
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println("error in removeWish-method");
+            e.printStackTrace();
         }
     }
 }
