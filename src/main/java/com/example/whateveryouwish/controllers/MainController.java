@@ -17,14 +17,15 @@ public class MainController {
 
 
     @GetMapping("/")
-    public String index(Model m) {
-        m.addAttribute("title", "Forside");
+    public String index(Model model) {
+        model.addAttribute("title", "Forside");
         return "index";
     }
 
 
     @GetMapping("/createuser")
-    public String createUser() {
+    public String createUser(Model model) {
+        model.addAttribute("title", "Opret bruger");
         return "createUser";
     }
 
@@ -45,6 +46,7 @@ public class MainController {
         int userID = db.getUserIdFromName(auth.getName());
         ArrayList<Wish> wishList = db.getWishListForUser(userID);
         model.addAttribute("wishList", wishList);
+        model.addAttribute("title", "Make A Wish!");
         return "make-a-wish";
     }
 
